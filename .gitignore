@@ -1,0 +1,10 @@
+# 依赖目录
+node_modules/
+
+# 构建输出
+/dist
+/lib
+/es
+/build
+
+
