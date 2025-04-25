@@ -7,15 +7,33 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:all": "jest --coverage --verbose",
+    "test:core": "jest --testPathPattern=core",
+    "test:reactive": "jest --testPathPattern=reactive",
+    "test:model": "jest --testPathPattern=model",
+    "test:validators": "jest --testPathPattern=validators",
+    "test:schema": "jest --testPathPattern=schema",
+    "test:utils": "jest --testPathPattern=utils",
+    "test:signal": "jest core/signal",
+    "test:model-test": "jest core/model",
+    "test:validators-test": "jest validators"
   },
   "keywords": [
     "formily",
     "reactive",
-    "form"
+    "form",
+    "json-schema"
   ],
   "author": "",
   "license": "MIT",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "ajv-keywords": "^5.1.0"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",

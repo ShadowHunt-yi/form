@@ -23,7 +23,7 @@ class ComputedRefImpl<T> {
     this.effect.allowRecurse = true;
   }
 
-  get value() {
+  get value(): T {
     // 如果值已经脏了（需要重新计算），则运行副作用获取新值
     if (this._dirty) {
       this._value = this.effect.run() as T;

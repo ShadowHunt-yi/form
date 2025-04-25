@@ -6,5 +6,5 @@ node_modules/
 /lib
 /es
 /build
-
+/coverage
 

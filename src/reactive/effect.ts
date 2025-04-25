@@ -61,7 +61,19 @@ export class ReactiveEffect<T = any> {
       cleanupEffect(this);
 
       // 执行函数，此时会触发代理对象的 get，进行依赖收集
-      return this.fn();
+      const result = this.fn();
+      
+      // 确保所有子effect都执行完成
+      if (this.children.size > 0) {
+        const children = Array.from(this.children);
+        children.forEach(child => {
+          if (child.active) {
+            child.run();
+          }
+        });
+      }
+      
+      return result;
     } finally {
       // 恢复之前的状态
       effectStack.pop();

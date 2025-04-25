@@ -150,13 +150,30 @@ export class Form {
 
   // 重置表单
   reset(): void {
+    // 重置所有字段
     for (const key in this.fields) {
-      this.fields[key].reset();
+      // 如果有初始值，先设置初始值
+      if (this.options.initialValues && key in this.options.initialValues) {
+        this.fields[key].value = this.options.initialValues[key];
+      } else {
+        this.fields[key].reset();
+      }
     }
     
     // 重置状态
     this.state.submitting = false;
     this.state.dirty = false;
+    
+    // 重置表单值为初始值
+    if (this.options.initialValues) {
+      for (const key in this.options.initialValues) {
+        // 确保该字段已注册
+        if (!this.fields[key]) {
+          this.registerField(key);
+        }
+        this.fields[key].value = this.options.initialValues[key];
+      }
+    }
   }
 
   // 验证所有字段
